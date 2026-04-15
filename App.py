@@ -18,8 +18,9 @@ min_length = st.slider("Min Summary Length", min_value=20, max_value=100, value=
 if st.button("Summarize"):
     if long_text.strip():
         with st.spinner("Generating summary..."):
+            input_text = long_text[:1000]  # prevent model crash for long input
             summary = summarizer(
-                long_text,
+                input_text,
                 max_length=max_length,
                 min_length=min_length,
                 do_sample=False
